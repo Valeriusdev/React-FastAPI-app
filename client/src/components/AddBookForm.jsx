@@ -18,6 +18,7 @@ const AddBookForm = ({ addBook }) => {
         value={bookTitle}
         onChange={(e) => setBookTitle(e.target.value)}
         placeholder="Enter book title"
+        className="border border-gray-300 text-sm px-4 py-2 rounded outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors"
       />
       <button
         type="submit"
