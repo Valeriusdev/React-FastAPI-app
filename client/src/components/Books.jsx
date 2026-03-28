@@ -4,13 +4,17 @@ import AddBookForm from "./AddBookForm";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchBooks = async () => {
+    setLoading(true);
     try {
       const response = await api.get("/books");
       setBooks(response.data.books);
     } catch (error) {
       console.error("Error fetching books", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,6 +34,7 @@ const BookList = () => {
   return (
     <div>
       <h2>Books List</h2>
+      {loading && <p>Loading...</p>}
       <ul>
         {books.map((book, index) => (
           <li key={index}>{book.title}</li>
