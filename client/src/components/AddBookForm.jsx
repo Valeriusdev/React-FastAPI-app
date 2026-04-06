@@ -8,9 +8,12 @@ const AddBookForm = ({ addBook }) => {
     e.preventDefault();
     if (!bookTitle.trim() || isSubmitting) return;
     setIsSubmitting(true);
-    await addBook(bookTitle.trim());
-    setBookTitle("");
-    setIsSubmitting(false);
+    try {
+      await addBook(bookTitle.trim());
+      setBookTitle("");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
