@@ -35,11 +35,15 @@ const BookList = () => {
     <div>
       <h2>Books List</h2>
       {loading && <p>Loading...</p>}
-      <ul>
-        {books.map((book, index) => (
-          <li key={index}>{book.title}</li>
-        ))}
-      </ul>
+      {!loading && books.length === 0 ? (
+        <p>No books yet</p>
+      ) : (
+        <ul>
+          {books.map((book, index) => (
+            <li key={index}>{book.title}</li>
+          ))}
+        </ul>
+      )}
       <AddBookForm addBook={addBook} />
     </div>
   );
