@@ -35,8 +35,18 @@ const BookList = () => {
 
   return (
     <div>
+      {error && (
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-red-100 text-red-700 px-4 py-2 rounded flex items-center gap-3">
+          <span>{error}</span>
+          <button
+            onClick={() => setError(null)}
+            className="font-bold text-red-500 hover:text-red-700"
+          >
+            &times;
+          </button>
+        </div>
+      )}
       <h2>Books List</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
       {loading && <p>Loading...</p>}
       {!loading && books.length === 0 ? (
         <p>No books yet</p>
