@@ -13,9 +13,6 @@ class Book(BaseModel):
 class Books(BaseModel):
     books: List[Book]
 
-def book_from_orm(db_book) -> Book:
-    return Book(id=db_book.id, title=db_book.title)
-
 app = FastAPI()
 
 origins = [
@@ -35,7 +32,7 @@ init_db()
 @app.get("/books", response_model=Books)
 def get_books(db: Session = Depends(get_db)):
     books = db.query(BookModel).all()
-    return Books(books=[book_from_orm(b) for b in books])
+    return Books(books=[Book(id=b.id, title=b.title) for b in books])
 
 @app.post("/books", response_model=Book)
 def add_book(book: Book, db: Session = Depends(get_db)):
@@ -43,7 +40,7 @@ def add_book(book: Book, db: Session = Depends(get_db)):
     db.add(db_book)
     db.commit()
     db.refresh(db_book)
-    return book_from_orm(db_book)
+    return Book(id=db_book.id, title=db_book.title)
 
 
 if __name__ == "__main__":
