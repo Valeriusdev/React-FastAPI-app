@@ -43,5 +43,9 @@ def add_book(book: Book, db: Session = Depends(get_db)):
     return Book(id=db_book.id, title=db_book.title)
 
 
+@app.get("/test-db")
+def test_db(db: Session = Depends(get_db)):
+    return {"status": "connected"}
+
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
