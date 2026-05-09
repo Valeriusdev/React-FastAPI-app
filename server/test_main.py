@@ -26,3 +26,11 @@ def test_get_books():
     response = client.get("/books")
     assert response.status_code == 200
     assert "books" in response.json()
+
+
+def test_add_book():
+    response = client.post("/books", json={"title": "Test Book"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["title"] == "Test Book"
+    assert "id" in data
