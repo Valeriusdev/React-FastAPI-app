@@ -20,6 +20,15 @@ const BookList = () => {
     }
   };
 
+  const deleteBook = async (id) => {
+    try {
+      await api.delete(`/books/${id}`);
+      setBooks((prev) => prev.filter((book) => book.id !== id));
+    } catch (error) {
+      setError("Failed to delete book.");
+    }
+  };
+
   const addBook = async (bookTitle) => {
     try {
       await api.post("/books", { title: bookTitle });
@@ -52,8 +61,17 @@ const BookList = () => {
         <p>No books yet</p>
       ) : (
         <ul>
-          {books.map((book, index) => (
-            <li key={index}>{book.title}</li>
+          {books.map((book) => (
+            <li key={book.id} className="flex items-center gap-2">
+              {book.title}
+              <button
+                onClick={() => deleteBook(book.id)}
+                className="text-red-500 hover:text-red-700 font-bold"
+                aria-label="Delete book"
+              >
+                &times;
+              </button>
+            </li>
           ))}
         </ul>
       )}
