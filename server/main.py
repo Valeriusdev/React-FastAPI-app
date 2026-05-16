@@ -43,6 +43,16 @@ def add_book(book: Book, db: Session = Depends(get_db)):
     return Book(id=db_book.id, title=db_book.title)
 
 
+@app.put("/books/{book_id}", response_model=Book)
+def update_book(book_id: int, book: Book, db: Session = Depends(get_db)):
+    db_book = db.query(BookModel).filter(BookModel.id == book_id).first()
+    if not db_book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    db_book.title = book.title
+    db.commit()
+    db.refresh(db_book)
+    return Book(id=db_book.id, title=db_book.title)
+
 @app.delete("/books/{book_id}")
 def delete_book(book_id: int, db: Session = Depends(get_db)):
     book = db.query(BookModel).filter(BookModel.id == book_id).first()
