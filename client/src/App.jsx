@@ -1,10 +1,13 @@
 import BookList from "./components/Books";
+import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl font-bold mb-6">Library App</h1>
-      <BookList />
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <div className="flex flex-col items-center justify-center py-10">
+        <BookList />
+      </div>
     </div>
   );
 }
