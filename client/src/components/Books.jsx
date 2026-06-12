@@ -58,7 +58,7 @@ const BookList = () => {
       <h2>Books List</h2>
       {loading && <p>Loading...</p>}
       {!loading && books.length === 0 ? (
-        <p>No books yet</p>
+        <p className="mb-4">No books yet</p>
       ) : (
         <ul>
           {books.map((book) => (
