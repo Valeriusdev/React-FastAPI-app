@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../api.js";
 import AddBookForm from "./AddBookForm";
+import BookItem from "./BookItem";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -62,16 +63,7 @@ const BookList = () => {
       ) : (
         <ul>
           {books.map((book) => (
-            <li key={book.id} className="flex items-center gap-2">
-              {book.title}
-              <button
-                onClick={() => deleteBook(book.id)}
-                className="text-red-500 hover:text-red-700 font-bold"
-                aria-label="Delete book"
-              >
-                &times;
-              </button>
-            </li>
+            <BookItem key={book.id} book={book} onDelete={deleteBook} />
           ))}
         </ul>
       )}
