@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api.js";
 import AddBookForm from "./AddBookForm";
 import BookItem from "./BookItem";
+import ErrorMessage from "./ErrorMessage";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -45,17 +46,7 @@ const BookList = () => {
 
   return (
     <div>
-      {error && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 bg-red-100 text-red-700 px-4 py-2 rounded flex items-center gap-3">
-          <span>{error}</span>
-          <button
-            onClick={() => setError(null)}
-            className="font-bold text-red-500 hover:text-red-700"
-          >
-            &times;
-          </button>
-        </div>
-      )}
+      <ErrorMessage message={error} onDismiss={() => setError(null)} />
       <h2>Books List</h2>
       {loading && <p>Loading...</p>}
       {!loading && books.length === 0 ? (
