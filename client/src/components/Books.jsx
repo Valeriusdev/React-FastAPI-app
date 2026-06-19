@@ -46,7 +46,6 @@ const BookList = () => {
 
   return (
     <div>
-      <ErrorMessage message={error} onDismiss={() => setError(null)} />
       <h2>Books List</h2>
       {loading && <p>Loading...</p>}
       {!loading && books.length === 0 ? (
@@ -59,6 +58,7 @@ const BookList = () => {
         </ul>
       )}
       <AddBookForm addBook={addBook} />
+      <ErrorMessage message={error} onDismiss={() => setError(null)} />
     </div>
   );
 };
