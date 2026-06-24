@@ -15,7 +15,7 @@ const BookList = () => {
     try {
       const response = await api.get("/books");
       setBooks(response.data.books);
-    } catch (error) {
+    } catch (err) {
       setError("Failed to load books.");
     } finally {
       setLoading(false);
@@ -26,7 +26,7 @@ const BookList = () => {
     try {
       await api.delete(`/books/${id}`);
       setBooks((prev) => prev.filter((book) => book.id !== id));
-    } catch (error) {
+    } catch (err) {
       setError("Failed to delete book.");
     }
   };
@@ -35,7 +35,7 @@ const BookList = () => {
     try {
       await api.post("/books", { title: bookTitle });
       fetchBooks(); // Refresh the list after adding a book
-    } catch (error) {
+    } catch (err) {
       setError("Failed to add book.");
     }
   };
