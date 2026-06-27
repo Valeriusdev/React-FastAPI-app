@@ -33,8 +33,8 @@ const BookList = () => {
 
   const addBook = async (bookTitle) => {
     try {
-      await api.post("/books", { title: bookTitle });
-      fetchBooks(); // Refresh the list after adding a book
+      const { data } = await api.post("/books", { title: bookTitle });
+      setBooks((prev) => [...prev, data]);
     } catch (err) {
       setError("Failed to add book.");
     }
