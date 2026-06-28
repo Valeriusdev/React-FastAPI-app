@@ -23,6 +23,7 @@ const BookList = () => {
   };
 
   const deleteBook = async (id) => {
+    setError(null);
     try {
       await api.delete(`/books/${id}`);
       setBooks((prev) => prev.filter((book) => book.id !== id));
@@ -32,6 +33,7 @@ const BookList = () => {
   };
 
   const addBook = async (bookTitle) => {
+    setError(null);
     try {
       const { data } = await api.post("/books", { title: bookTitle });
       setBooks((prev) => [...prev, data]);
