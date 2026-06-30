@@ -16,6 +16,8 @@ class BookModel(Base):
     __tablename__ = "books"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
+    author = Column(String, nullable=True)
+    release_year = Column(Integer, nullable=True)
 
 def init_db():
     Base.metadata.create_all(bind=engine)

@@ -9,6 +9,8 @@ from database import BookModel, init_db, get_db
 class Book(BaseModel):
     id: int | None = None
     title: str
+    author: str | None = None
+    release_year: int | None = None
 
 class Books(BaseModel):
     books: List[Book]
@@ -32,15 +34,15 @@ init_db()
 @app.get("/books", response_model=Books)
 def get_books(db: Session = Depends(get_db)):
     books = db.query(BookModel).all()
-    return Books(books=[Book(id=b.id, title=b.title) for b in books])
+    return Books(books=[Book(id=b.id, title=b.title, author=b.author, release_year=b.release_year) for b in books])
 
 @app.post("/books", response_model=Book)
 def add_book(book: Book, db: Session = Depends(get_db)):
-    db_book = BookModel(title=book.title)
+    db_book = BookModel(title=book.title, author=book.author, release_year=book.release_year)
     db.add(db_book)
     db.commit()
     db.refresh(db_book)
-    return Book(id=db_book.id, title=db_book.title)
+    return Book(id=db_book.id, title=db_book.title, author=db_book.author, release_year=db_book.release_year)
 
 
 @app.put("/books/{book_id}", response_model=Book)
@@ -49,9 +51,11 @@ def update_book(book_id: int, book: Book, db: Session = Depends(get_db)):
     if not db_book:
         raise HTTPException(status_code=404, detail="Book not found")
     db_book.title = book.title
+    db_book.author = book.author
+    db_book.release_year = book.release_year
     db.commit()
     db.refresh(db_book)
-    return Book(id=db_book.id, title=db_book.title)
+    return Book(id=db_book.id, title=db_book.title, author=db_book.author, release_year=db_book.release_year)
 
 @app.delete("/books/{book_id}")
 def delete_book(book_id: int, db: Session = Depends(get_db)):
