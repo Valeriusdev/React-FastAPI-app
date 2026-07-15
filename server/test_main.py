@@ -30,7 +30,7 @@ def test_get_books():
 
 def test_add_book():
     response = client.post("/books", json={"title": "Test Book"})
-    assert response.status_code == 200
+    assert response.status_code == 201
     data = response.json()
     assert data["title"] == "Test Book"
     assert "id" in data
@@ -38,6 +38,7 @@ def test_add_book():
 
 def test_update_book():
     response = client.post("/books", json={"title": "Test Book"})
+    assert response.status_code == 201
     book_id = response.json()["id"]
     response = client.put(f"/books/{book_id}", json={"title": "Updated Book"})
     assert response.status_code == 200
@@ -50,5 +51,4 @@ def test_delete_book():
     response = client.post("/books", json={"title": "Test Book"})
     book_id = response.json()["id"]
     response = client.delete(f"/books/{book_id}")
-    assert response.status_code == 200
-    assert response.json() == {"message": "Book deleted"}
+    assert response.status_code == 204

@@ -36,7 +36,7 @@ def get_books(db: Session = Depends(get_db)):
     books = db.query(BookModel).all()
     return Books(books=[Book(id=b.id, title=b.title, author=b.author, release_year=b.release_year) for b in books])
 
-@app.post("/books", response_model=Book)
+@app.post("/books", response_model=Book, status_code=201)
 def add_book(book: Book, db: Session = Depends(get_db)):
     db_book = BookModel(title=book.title, author=book.author, release_year=book.release_year)
     db.add(db_book)
@@ -57,14 +57,13 @@ def update_book(book_id: int, book: Book, db: Session = Depends(get_db)):
     db.refresh(db_book)
     return Book(id=db_book.id, title=db_book.title, author=db_book.author, release_year=db_book.release_year)
 
-@app.delete("/books/{book_id}")
+@app.delete("/books/{book_id}", status_code=204)
 def delete_book(book_id: int, db: Session = Depends(get_db)):
     book = db.query(BookModel).filter(BookModel.id == book_id).first()
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
     db.delete(book)
     db.commit()
-    return {"message": "Book deleted"}
 
 @app.get("/test-db")
 def test_db(db: Session = Depends(get_db)):
