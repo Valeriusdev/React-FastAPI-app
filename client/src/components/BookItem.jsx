@@ -3,7 +3,7 @@ const BookItem = ({ book, onDelete }) => (
     {book.title}
     <button
       onClick={() => onDelete(book.id)}
-      className="text-red-500 hover:text-red-700 font-bold"
+      className="ml-auto text-red-400 hover:text-red-600 hover:bg-red-50 rounded px-1.5 py-0.5 transition-colors"
       aria-label="Delete book"
     >
       &times;
