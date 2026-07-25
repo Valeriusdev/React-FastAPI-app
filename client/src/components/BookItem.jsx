@@ -1,5 +1,5 @@
 const BookItem = ({ book, onDelete }) => (
-  <li className="flex items-center gap-2">
+  <li className="flex items-center gap-2 bg-white border-2 border-blue-300 hover:border-blue-600 rounded px-3 py-1.5 transition-colors">
     {book.title}
     <button
       onClick={() => onDelete(book.id)}
