@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from "../api.js";
 import AddBookForm from "./AddBookForm";
 import BookItem from "./BookItem";
@@ -8,6 +8,8 @@ const BookList = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showRemoved, setShowRemoved] = useState(false);
+  const removeTimer = useRef(null);
 
   const fetchBooks = async () => {
     setLoading(true);
@@ -27,6 +29,9 @@ const BookList = () => {
     try {
       await api.delete(`/books/${id}`);
       setBooks((prev) => prev.filter((book) => book.id !== id));
+      clearTimeout(removeTimer.current);
+      setShowRemoved(true);
+      removeTimer.current = setTimeout(() => setShowRemoved(false), 3000);
     } catch (err) {
       setError("Failed to delete book.");
     }
@@ -61,6 +66,9 @@ const BookList = () => {
           </ul>
         ))}
       <AddBookForm addBook={addBook} />
+      {showRemoved && (
+        <p className="mt-2 text-xs text-red-500">Book removed!</p>
+      )}
       <ErrorMessage message={error} onDismiss={() => setError(null)} />
     </div>
   );
