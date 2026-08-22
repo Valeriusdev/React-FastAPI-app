@@ -1,10 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const AddBookForm = ({ addBook }) => {
   const [bookTitle, setBookTitle] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const successTimer = useRef(null);
+
+  useEffect(() => {
+    return () => clearTimeout(successTimer.current);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
