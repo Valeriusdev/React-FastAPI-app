@@ -67,7 +67,7 @@ const BookList = () => {
         ))}
       <AddBookForm addBook={addBook} />
       {showRemoved && (
-        <p className="mt-2 text-xs text-red-500">Book removed!</p>
+        <p className="mt-2 text-xs text-green-600">Book removed!</p>
       )}
       <ErrorMessage message={error} onDismiss={() => setError(null)} />
     </div>
