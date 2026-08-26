@@ -44,6 +44,7 @@ const BookList = () => {
       setBooks((prev) => [...prev, data]);
     } catch (err) {
       setError("Failed to add book.");
+      throw err;
     }
   };
 
