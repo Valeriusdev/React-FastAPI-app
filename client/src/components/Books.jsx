@@ -60,7 +60,7 @@ const BookList = () => {
         (books.length === 0 ? (
           <p className="mb-4">No books yet</p>
         ) : (
-          <ul>
+          <ul className="flex flex-col gap-2">
             {books.map((book) => (
               <BookItem key={book.id} book={book} onDelete={deleteBook} />
             ))}
