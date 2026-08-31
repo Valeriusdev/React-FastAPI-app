@@ -29,6 +29,7 @@ const AddBookForm = ({ addBook }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <input
+          aria-label="Book title"
           type="text"
           value={bookTitle}
           onChange={(e) => setBookTitle(e.target.value)}
