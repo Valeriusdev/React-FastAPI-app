@@ -54,7 +54,9 @@ const BookList = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Books List</h2>
+      <h2 className="text-xl font-semibold mb-4">
+        Books List{!loading && ` (${books.length})`}
+      </h2>
       {loading && <p>Loading...</p>}
       {!loading &&
         (books.length === 0 ? (
