@@ -16,6 +16,12 @@ const BookItem = ({ book, onDelete }) => {
   return (
     <li className="flex items-center gap-2 bg-white border-2 border-blue-300 hover:border-blue-600 rounded px-3 py-1.5 transition-colors">
       {book.title}
+      {book.author && (
+        <span className="text-xs text-gray-500">{book.author}</span>
+      )}
+      {book.release_year && (
+        <span className="text-xs text-gray-500">{book.release_year}</span>
+      )}
       <button
         onClick={handleDelete}
         disabled={isDeleting}

@@ -37,10 +37,10 @@ const BookList = () => {
     }
   };
 
-  const addBook = async (bookTitle) => {
+  const addBook = async (book) => {
     setError(null);
     try {
-      const { data } = await api.post("/books", { title: bookTitle });
+      const { data } = await api.post("/books", book);
       setBooks((prev) => [...prev, data]);
     } catch (err) {
       setError("Failed to add book.");
