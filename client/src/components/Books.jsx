@@ -68,7 +68,9 @@ const BookList = () => {
             ))}
           </ul>
         ))}
-      <AddBookForm addBook={addBook} />
+      <div className="mt-6">
+        <AddBookForm addBook={addBook} />
+      </div>
       {showRemoved && (
         <p className="mt-2 text-xs text-green-600">Book removed!</p>
       )}
