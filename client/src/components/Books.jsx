@@ -17,7 +17,7 @@ const BookList = () => {
     try {
       const response = await api.get("/books");
       setBooks(response.data.books);
-    } catch (err) {
+    } catch {
       setError("Failed to load books.");
     } finally {
       setLoading(false);
@@ -32,7 +32,7 @@ const BookList = () => {
       clearTimeout(removeTimer.current);
       setShowRemoved(true);
       removeTimer.current = setTimeout(() => setShowRemoved(false), 3000);
-    } catch (err) {
+    } catch {
       setError("Failed to delete book.");
     }
   };
