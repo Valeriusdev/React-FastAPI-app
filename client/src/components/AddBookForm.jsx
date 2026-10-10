@@ -42,6 +42,7 @@ const AddBookForm = ({ addBook }) => {
           value={bookTitle}
           onChange={(e) => setBookTitle(e.target.value)}
           placeholder="Enter book title"
+          maxLength={200}
           disabled={isSubmitting}
           className="flex-1 border border-gray-300 text-sm px-4 py-2 rounded outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors disabled:opacity-50"
         />
