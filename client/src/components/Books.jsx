@@ -62,7 +62,7 @@ const BookList = () => {
         (books.length === 0 ? (
           <p className="mb-4">No books yet</p>
         ) : (
-          <ul className="flex flex-col gap-2">
+          <ul aria-label="Books" className="flex flex-col gap-2">
             {books.map((book) => (
               <BookItem key={book.id} book={book} onDelete={deleteBook} />
             ))}
