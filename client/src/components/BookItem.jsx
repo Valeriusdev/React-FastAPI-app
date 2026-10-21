@@ -23,6 +23,7 @@ const BookItem = ({ book, onDelete }) => {
         <span className="text-xs text-gray-500">{book.release_year}</span>
       )}
       <button
+        type="button"
         onClick={handleDelete}
         disabled={isDeleting}
         className={`ml-auto rounded px-1.5 py-0.5 transition-colors ${
