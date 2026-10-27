@@ -20,7 +20,9 @@ const BookItem = ({ book, onDelete }) => {
         <span className="text-xs text-gray-500">{book.author}</span>
       )}
       {book.release_year && (
-        <span className="text-xs text-gray-500">{book.release_year}</span>
+        <span className="text-xs text-gray-500">
+          Published {book.release_year}
+        </span>
       )}
       <button
         type="button"
