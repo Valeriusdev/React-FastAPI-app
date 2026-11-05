@@ -28,11 +28,7 @@ const BookItem = ({ book, onDelete }) => {
         type="button"
         onClick={handleDelete}
         disabled={isDeleting}
-        className={`ml-auto rounded px-1.5 py-0.5 transition-colors ${
-          isDeleting
-            ? "text-red-200"
-            : "text-red-400 hover:text-red-600 hover:bg-red-50"
-        }`}
+        className="ml-auto rounded px-1.5 py-0.5 text-red-400 transition-colors hover:bg-red-50 hover:text-red-600 disabled:text-red-200 disabled:hover:bg-transparent disabled:hover:text-red-200"
         aria-label="Delete book"
       >
         &times;
