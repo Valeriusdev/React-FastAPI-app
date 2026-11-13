@@ -73,9 +73,11 @@ const AddBookForm = ({ addBook }) => {
           {isSubmitting ? "Adding..." : "Add Book"}
         </button>
       </form>
-      {showSuccess && (
-        <p className="mt-2 text-xs text-green-600">Book added!</p>
-      )}
+      <div role="status">
+        {showSuccess && (
+          <p className="mt-2 text-xs text-green-600">Book added!</p>
+        )}
+      </div>
     </div>
   );
 };
