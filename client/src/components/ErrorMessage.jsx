@@ -5,6 +5,7 @@ const ErrorMessage = ({ message, onDismiss }) => {
     <div role="alert" className="mt-4 bg-red-100 text-red-700 px-4 py-2 rounded flex items-center gap-3">
       <span>{message}</span>
       <button
+        type="button"
         onClick={onDismiss}
         aria-label="Dismiss error"
         className="ml-auto text-red-400 hover:text-red-600 hover:bg-red-200 rounded px-1.5 py-0.5 transition-colors"
