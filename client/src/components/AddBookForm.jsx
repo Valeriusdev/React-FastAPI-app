@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import Input from "./Input";
 
 const AddBookForm = ({ addBook }) => {
   const [bookTitle, setBookTitle] = useState("");
@@ -36,7 +37,7 @@ const AddBookForm = ({ addBook }) => {
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
-        <input
+        <Input
           aria-label="Book title"
           type="text"
           value={bookTitle}
@@ -45,25 +46,25 @@ const AddBookForm = ({ addBook }) => {
           required
           maxLength={200}
           disabled={isSubmitting}
-          className="flex-1 border border-gray-300 text-sm px-4 py-2 rounded outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors disabled:opacity-50"
+          className="flex-1"
         />
-        <input
+        <Input
           aria-label="Author"
           type="text"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="Author"
           disabled={isSubmitting}
-          className="flex-1 border border-gray-300 text-sm px-4 py-2 rounded outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors disabled:opacity-50"
+          className="flex-1"
         />
-        <input
+        <Input
           aria-label="Release year"
           type="number"
           value={releaseYear}
           onChange={(e) => setReleaseYear(e.target.value)}
           placeholder="Year"
           disabled={isSubmitting}
-          className="w-24 border border-gray-300 text-sm px-4 py-2 rounded outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition-colors disabled:opacity-50"
+          className="w-24"
         />
         <button
           type="submit"
