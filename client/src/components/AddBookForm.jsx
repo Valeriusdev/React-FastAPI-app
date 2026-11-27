@@ -69,7 +69,7 @@ const AddBookForm = ({ addBook }) => {
         <button
           type="submit"
           disabled={isSubmitting || !bookTitle.trim()}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? "Adding..." : "Add Book"}
         </button>
